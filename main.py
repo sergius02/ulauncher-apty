@@ -21,13 +21,21 @@ class APTy(Extension):
     def search_package(self, query_package):
         results = []
         terminal_app = self.preferences.get("apty_terminal_app")
-        n_results = self.preferences.get("apty_n_results")
+        max_results = int(self.preferences.get("apty_n_results"))
 
         data = subprocess.Popen(["apt-cache", "search", str(query_package)], stdout=subprocess.PIPE)
-        query_results = str(data.communicate()).replace("(b\"", "").replace("(b'", "").replace("\\n', None)", "")
+        query_results = str(data.communicate())\
+            .replace("(b\"", "")\
+            .replace("(b'", "")\
+            .replace("\\n', None)", "")\
+            .replace("\\n\", None)", "")
 
         packages = query_results.split("\\n")
-        for i in range(int(n_results)):
+        n_results = int(len(packages))
+
+        max_range = min(max_results, n_results)
+
+        for i in range(int(max_range)):
             package = packages[i]
             package_name = package.split(" - ")[0]
             package_description = package.split(" - ")[1]
