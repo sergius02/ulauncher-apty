@@ -1,0 +1,31 @@
+{
+  "required_api_version": "^2.0.0",
+  "name": "APTy",
+  "description": "With APTy you can search and install APT package with your favourite terminal",
+  "developer_name": "Sergio Fernández Celorio",
+  "icon": "images/icon.png",
+  "options": {
+    "query_debounce": 0.05
+  },
+  "preferences": [
+    {
+      "id": "apty_search_keyword",
+      "type": "keyword",
+      "name": "Search",
+      "default_value": "apty"
+    },
+    {
+      "id": "apty_terminal_app",
+      "type": "input",
+      "name": "Terminal app",
+      "description": "This is the command to send your terminal emulator the apt install, see the Github for examples",
+      "default_value": "gnome-terminal --"
+    },
+    {
+      "id": "apty_n_results",
+      "type": "input",
+      "name": "Max number of results",
+      "default_value": "5"
+    }
+  ]
+}
