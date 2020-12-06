@@ -38,7 +38,19 @@ class APTy(Extension):
             .replace("(b\"", "")\
             .replace("(b'", "")\
             .replace("\\n', None)", "")\
-            .replace("\\n\", None)", "")
+            .replace("\\n\", None)", "")\
+            .replace("', None)", "")\
+            .replace("\", None)", "")
+
+        if query_results == "":
+            return [
+                ExtensionResultItem(
+                    icon="images/icon.png",
+                    name="No package " + query_package + " could be found",
+                    description="Are your repositories updated? (sudo apt update)\n"
+                                "Remember, you can use regular expresions\nFor example: apty ^steam",
+                )
+            ]
 
         packages = query_results.split("\\n")
         n_results = int(len(packages))
