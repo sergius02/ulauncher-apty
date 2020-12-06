@@ -27,6 +27,9 @@ APTy needs a terminal configured to start the instalation, some examples:
 | Gnome terminal | gnome-terminal -- |
 | Alacritty      | alacritty -e      |
 
+## Attributions
+Icon from OpenMoji: https://openmoji.org/
+
 ----------
 
 If you like my work you can
