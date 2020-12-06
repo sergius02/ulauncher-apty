@@ -20,6 +20,16 @@ class APTy(Extension):
 
     def search_package(self, query_package):
         results = []
+
+        if query_package == "":
+            return [
+                ExtensionResultItem(
+                    icon="images/icon.png",
+                    name="Start typing the package name",
+                    description="Remember, you can use regular expresions\nFor example: apty ^steam",
+                )
+            ]
+
         terminal_app = self.preferences.get("apty_terminal_app")
         max_results = int(self.preferences.get("apty_n_results"))
 
@@ -56,7 +66,7 @@ class KeywordQueryEventListener(EventListener):
 
     def on_event(self, event, extension):
         items = []
-        text = event.get_argument() or "Start typing..."
+        text = event.get_argument() or ""
         return RenderResultListAction(extension.search_package(text))
 
 
